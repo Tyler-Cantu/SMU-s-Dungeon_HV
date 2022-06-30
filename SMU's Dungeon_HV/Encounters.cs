@@ -21,13 +21,13 @@ public class Encounters
     //Encounters
     public static void FirstEncounter()
     {
-        int milliseconds = 2000;
-        int millsec2 = 1500;
+        int milliseconds = 1000;
+       // int millsec2 = 1500;
         Console.Clear();// clears the page and this begins first encounter of the game
         Console.WriteLine("You throw open the door and grab a wooden cross while charging towards your captor!");
         Thread.Sleep(milliseconds);
         Console.WriteLine("He turns...");
-        Thread.Sleep(millsec2);
+        Thread.Sleep(milliseconds);
         Console.WriteLine("What do you do?");
         Console.WriteLine();
         Console.ReadKey();
@@ -43,24 +43,33 @@ public class Encounters
     }
     public static void WizardEncounter()
         {//new random encounter
-            int milliseconds = 2000;
+            int milliseconds = 1000;
 
             Console.Clear();
             Console.WriteLine("There is a door to your right...it slowly creaks open... ");
             Thread.Sleep(milliseconds);
-
             Console.Write("As you peer into the dark room. You see a gnome, with a scroll that is much bigger than him, practicing dark magic.");
             Console.ReadKey();
-            Combat(false, "Dark Wizard", 4, 2);
+            Combat(false, "Dark Wizard", 3, 5);
+        }
+        public static void GhoulEncounter()
+        {//new random encounter
+            int milliseconds = 1000;
+
+            Console.Clear();
+            Console.WriteLine("As you are running you see ahead something crawling out of the ground... ");
+            Thread.Sleep(milliseconds);
+            Console.Write("As you get closeer. You see a Ghoul!");
+            Console.ReadKey();
+            Combat(false, "Ghoul", 5, 5);
         }
 
 
-
-    // Encounter Tools
-    public static void RandomEncounter()
+        // Encounter Tools
+        public static void RandomEncounter()
     {//This is the Random Encounter generator... you can see here it will either give you the basic fight encounter or the Wizard encounter. More will be added later
             //such as a boss fights.
-        switch (rand.Next(0, 2))
+        switch (rand.Next(0, 4))
         {
             case 0:
                 BasicFightEncounter();
@@ -68,7 +77,15 @@ public class Encounters
             case 1:
                     WizardEncounter();
                 break ;
-        }
+            case 2:BasicFightEncounter();
+                    break;
+            case 3:BasicFightEncounter();
+                    break;
+            case 4:GhoulEncounter();
+                    break;
+
+
+            }
     }
     public static void Combat(bool random, string name, int power, int health)
     {

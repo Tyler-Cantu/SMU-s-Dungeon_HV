@@ -19,7 +19,7 @@ namespace SMU_s_Dungeon_HV
             int armorP;
             int weaponP;
             int difP;
-
+            int store;
             while (true)
             {//while loop for when a player is currently using the shop it shows below that when you purchase armor, weapons or difficulty it will increase in price everytime
                 //the potions you can buy will increase in cost as you buy mods(difficulty)
@@ -51,6 +51,8 @@ namespace SMU_s_Dungeon_HV
                 Console.WriteLine("             Difficulty Mods: " + p.mods);
                 Console.WriteLine("        ======================================");
                 //Wait for input
+                Console.WriteLine();
+                Console.WriteLine("To exit and return to game press 'E' and then enter");
                 ConsoleKey input = Console.ReadKey(true).Key;
                 if (input == ConsoleKey.W)
                 {

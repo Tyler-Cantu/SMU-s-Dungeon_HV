@@ -9,7 +9,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Smu_s_Dungeon
 {
-    [Serializable]
+    //[Serializable]
      public class Program
     {
         public static Player currentPlayer = new Player();
@@ -40,7 +40,7 @@ namespace Smu_s_Dungeon
 
         static void Start()
         {
-            int milliseconds = 1500;
+            int milliseconds = 1000;
             Console.WriteLine(@"
  
      ▄████████   ▄▄▄▄███▄▄▄▄   ███    █▄    █   ▄████████                          
@@ -60,19 +60,19 @@ namespace Smu_s_Dungeon
   ███    ███ ███    ███ ███   ███   ███    ███   ███    █▄  ███    ███ ███   ███
   ███   ▄███ ███    ███ ███   ███   ███    ███   ███    ███ ███    ███ ███   ███
   ████████▀  ████████▀   ▀█   █▀    ████████▀    ██████████  ▀██████▀   ▀█   █▀ ");
-            //Music.sweetChild();
+           // Music.sweetChild();
             Console.ReadKey(true);
             Console.Clear();
             Console.WriteLine("Welcome! Please enter your champion's name!");
             Console.WriteLine("Champion Name:");
             currentPlayer.name = Console.ReadLine();
             //little tune that plays when the character is created
-            Console.Beep(400, 200);
-            Console.Beep(400, 200);
-            Console.Beep(600, 200);
-            Console.Beep(700, 200);
-            Console.Beep(1000, 500);
-            Console.Beep(1000, 500);
+            //Console.Beep(400, 200);
+            //Console.Beep(400, 200);
+            //Console.Beep(600, 200);
+            //Console.Beep(700, 200);
+            //Console.Beep(1000, 500);
+            //Console.Beep(1000, 500);
             Console.Clear();
             Console.WriteLine("You wake up in a cold, damp stone room under SMU.");
             Thread.Sleep(milliseconds);
@@ -102,30 +102,31 @@ namespace Smu_s_Dungeon
             Console.WriteLine("You see your captor standing with his back to you outside the door.");
             Console.ReadKey();
         }
-        public static void Save()
-        {
-            BinaryFormatter binForm = new BinaryFormatter();
-            string path = "saves/" + currentPlayer.id.ToString();
-            FileStream file = File.Open(path, FileMode.OpenOrCreate);
-            binForm.Serialize(file, currentPlayer);
-            file.Close();
-        }
-        public static Player Load()
-        {
-            Console.Clear();
-            Console.WriteLine("Choose your player:");
-            string[] paths = Directory.GetDirectories("saves");
-            List<Player> players = new List<Player>();
+        //public static void Save()
+        //{
+        //    BinaryFormatter binForm = new BinaryFormatter();
+        //    string path = "saves/" + currentPlayer.id.ToString();
+        //    FileStream file = File.Open(path, FileMode.OpenOrCreate);
+        //    binForm.Serialize(file, currentPlayer);
+        //    file.Close();
+        //}
+        //public static Player Load()
+        //{
+        //    Console.Clear();
+        //    Console.WriteLine("Choose your player:");
+        //    string[] paths = Directory.GetDirectories("saves");
+        //    List<Player> players = new List<Player>();
 
-            BinaryFormatter binForm = new BinaryFormatter();
-            foreach (string p in paths)
-            {
-                FileStream file = File.Open(p, FileMode.Open);
-                Player player = (Player)binForm.Deserialize(file);
-                file.Close();
-            }
+        //    BinaryFormatter binForm = new BinaryFormatter();
+        //    foreach (string p in paths)
+        //    {
+        //        FileStream file = File.Open(p, FileMode.Open);
+        //        Player player = (Player)binForm.Deserialize(file);
+        //        file.Close();
+        //    }
 
 
-        }
+        //}
     }
 }
+
