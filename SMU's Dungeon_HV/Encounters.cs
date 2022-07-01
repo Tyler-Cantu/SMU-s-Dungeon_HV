@@ -9,16 +9,6 @@ namespace SMU_s_Dungeon_HV
 { 
 public class Encounters
     {
-
-
-    static Random rand = new Random();
-    //Encounter Generic
-
-        
-
-
-
-    //Encounters
     public static void FirstEncounter()
     {
         int milliseconds = 1000;
@@ -69,7 +59,7 @@ public class Encounters
         public static void RandomEncounter()
     {//This is the Random Encounter generator... you can see here it will either give you the basic fight encounter or the Wizard encounter. More will be added later
             //such as a boss fights.
-        switch (rand.Next(0, 4))
+        switch (Program.rand.Next(0, 4))
         {
             case 0:
                 BasicFightEncounter();
@@ -79,9 +69,7 @@ public class Encounters
                 break ;
             case 2:BasicFightEncounter();
                     break;
-            case 3:BasicFightEncounter();
-                    break;
-            case 4:GhoulEncounter();
+            case 3:GhoulEncounter();
                     break;
 
 
@@ -146,7 +134,7 @@ public class Encounters
                 int damage = (p / 2) - Program.currentPlayer.armorValue;
                 if (damage < 0)
                     damage = 0;
-                int attack = rand.Next(0, Program.currentPlayer.weaponValue) / 2;
+                int attack = Program.rand.Next(0, Program.currentPlayer.weaponValue) / 2;
                 Console.WriteLine("You lose " + damage + " health and deal " + attack + " damage!");
                 Program.currentPlayer.health -= damage;
                 h -= attack;
@@ -155,7 +143,7 @@ public class Encounters
             else if (input == ConsoleKey.R)// || input.ToLower() == "run")
             {
                 //Run
-                if (rand.Next(0, 2) == 0)
+                if (Program.rand.Next(0, 2) == 0)
                 {
                     Console.WriteLine("As you try to sprint away from the " + n + ", its strike catches you in the back, sending you sprawling onto the ground!");
                     int damage = p - Program.currentPlayer.armorValue;
@@ -243,7 +231,7 @@ public class Encounters
 
     public static string GetName()
     {
-        switch (rand.Next(0, 4))//This is the method  GetName that gives you the 4(5) possible encounters that you can have 
+        switch (Program.rand.Next(0, 4))//This is the method  GetName that gives you the 4(5) possible encounters that you can have 
         {
             case 0:
                 return "Guy named Tivo";

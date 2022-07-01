@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Smu_s_Dungeon;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -39,6 +40,7 @@ namespace SMU_s_Dungeon_HV
                 Console.WriteLine("    ||         (D)ifficulty: $" + difP + "        "+ "||");
                 Console.WriteLine("    =======================================   ");
                 Console.WriteLine("                     (E)xit                  ");
+                Console.WriteLine("                     (Q)uit                  ");
                 Console.WriteLine();
                 Console.WriteLine();
                 Console.WriteLine("                " + p.name + "'s Stats");
@@ -73,6 +75,11 @@ namespace SMU_s_Dungeon_HV
                     TryBuy("dif", difP, p);
 
                 }
+                else if (input == ConsoleKey.Q)
+                {
+                    Program.Quit();
+                }            
+
                 else if (input == ConsoleKey.E)
                     break;
             }

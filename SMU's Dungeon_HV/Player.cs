@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace SMU_s_Dungeon_HV
 {
+    [Serializable]
     public class Player
     {//this class sets the players basic stats such as starting coins, health, damage, etc. For the example we are giving the player 10000 coins to show how the game can scale
         // when you buy stuff from the shop
