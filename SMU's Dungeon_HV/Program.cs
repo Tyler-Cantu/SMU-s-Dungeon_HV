@@ -42,6 +42,7 @@ namespace Smu_s_Dungeon
   ███    ███ ███    ███ ███   ███   ███    ███   ███    █▄  ███    ███ ███   ███
   ███   ▄███ ███    ███ ███   ███   ███    ███   ███    ███ ███    ███ ███   ███
   ████████▀  ████████▀   ▀█   █▀    ████████▀    ██████████  ▀██████▀   ▀█   █▀ ");
+            Music.sweetChild();
             Console.ReadLine();// this is the start of the game which wil display the game title and play a tune...still working on being able to skip tune 
             if (!Directory.Exists("saves"))
             {
@@ -64,7 +65,7 @@ namespace Smu_s_Dungeon
             Console.Clear();
             Player p = new Player();
             int milliseconds = 1000;
-            //Music.sweetChild();
+
             Console.Clear();
             Console.WriteLine("Welcome! Please enter your champion's name!");
             Console.WriteLine("Champion Name:");
