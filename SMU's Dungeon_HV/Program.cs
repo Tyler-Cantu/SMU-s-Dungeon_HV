@@ -50,8 +50,8 @@ namespace Smu_s_Dungeon
             currentPlayer = Load(out bool newP);
             if (newP)
                 Encounters.FirstEncounter();
-
-
+            else if (!newP)
+               Encounters.FirstEncounter();
 
             while (mainLoop)
             {
@@ -117,7 +117,7 @@ namespace Smu_s_Dungeon
         public static void Save()
         {
             BinaryFormatter binForm = new BinaryFormatter();
-            string path = "saves/" + currentPlayer.id.ToString() + ".level";
+            string path = "C://Users/Tyler Cantu/source/repos/SMU's Dungeon_HV/SMU's Dungeon_HV/bin/Debug/net6.0/saves/" + currentPlayer.id.ToString() + ".level";
             FileStream file = File.Open(path, FileMode.OpenOrCreate);
             binForm.Serialize(file, currentPlayer);
             file.Close();
@@ -130,80 +130,87 @@ namespace Smu_s_Dungeon
             List<Player> players = new List<Player>();
             int idCount = 0;
 
-            BinaryFormatter binForm = new BinaryFormatter();
-            foreach (string p in paths)
+            
+            if(paths.Length > 0)
             {
-                FileStream file = File.Open(p, FileMode.Open);
-                Player player = (Player)binForm.Deserialize(file);
-                file.Close();
-                players.Add(player);
-
-            }
-            idCount = players.Count;
-
-            while (true)
-            {
-                Console.Clear();
-                Console.WriteLine("Choose your player:");
-
-                foreach (Player p in players)
+                BinaryFormatter binForm = new BinaryFormatter();
+                foreach (string p in paths)
                 {
-                    Console.WriteLine(p.id + ": " + p.name);
+                    FileStream file = File.Open(p, FileMode.Open);
+                    Player player = (Player)binForm.Deserialize(file);
+                    file.Close();
+                    players.Add(player);
+
                 }
+                idCount = players.Count + 1;
 
-
-                Console.WriteLine("Please input player name or id  (id:# or playername). Additionally, 'create' will start a new save ");
-                string[] data = Console.ReadLine().Split(':');
-
-                try //trying code in try block 
+                while (true)
                 {
-                    if (data[0] == "id")
+                    Console.Clear();
+                    Console.WriteLine("Choose your player:");
+
+                    foreach (Player p in players)
                     {
-                        if (int.TryParse(data[1], out int id))
+                        Console.WriteLine(p.id + ": " + p.name);
+                    }
+
+
+                    Console.WriteLine("Please input player name or id  (id:# or playername). Additionally, 'create' will start a new save ");
+                    string[] data = Console.ReadLine().Split(':');
+
+                    try //trying code in try block 
+                    {
+                        if (data[0] == "id")
+                        {
+                            if (int.TryParse(data[1], out int id))
+                            {
+                                foreach (Player player in players)
+                                {
+                                    if (player.id == id)
+                                    {
+                                        return player;
+                                    }
+                                }
+                                Console.WriteLine("There is no player with that id!");
+                                Console.ReadKey();
+                            }
+                            else
+                            {
+                                Console.WriteLine("Your id needs to be a number! Press any key to continue");
+                                Console.ReadKey();
+                            }
+                        }
+                        else if (data[0] == "create")
+                        {
+                            Player newPlayer = NewStart(idCount);
+                            newP = true;
+                            return newPlayer;
+
+                        }
+                        else
                         {
                             foreach (Player player in players)
                             {
-                                if (player.id == id)
+                                if (player.name == data[0])
                                 {
                                     return player;
                                 }
                             }
-                            Console.WriteLine("There is no player with that id!");
-                            Console.ReadKey();
-                        }
-                        else
-                        {
-                            Console.WriteLine("Your id needs to be a number! Press any key to continue");
+                            Console.WriteLine("There is no player with that name!");
                             Console.ReadKey();
                         }
                     }
-                    else if (data[0] == "create")
+                    catch (IndexOutOfRangeException)//if it finds an exception then it will catch
+                                                    //to prompt the user that what they did doesnt work
                     {
-                        Player newPlayer = NewStart(idCount);
-                        newP = true;
-                        return newPlayer;
-
-                    }
-                    else
-                    {
-                        foreach (Player player in players)
-                        {
-                            if (player.name == data[0])
-                            {
-                                return player;
-                            }
-                        }
-                        Console.WriteLine("There is no player with that name!");
+                        Console.WriteLine("Your id needs to be a number! Press any key to continue");
                         Console.ReadKey();
                     }
                 }
-                catch (IndexOutOfRangeException)//if it finds an exception then it will catch
-                                                //to prompt the user that what they did doesnt work
-                {
-                    Console.WriteLine("Your id needs to be a number! Press any key to continue");
-                    Console.ReadKey();
-                }
-
+            }
+            else
+            {
+                return NewStart(0);
             }
         }
     }

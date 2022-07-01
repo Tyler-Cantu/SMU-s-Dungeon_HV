@@ -49,7 +49,7 @@ public class Encounters
             Console.Clear();
             Console.WriteLine("As you are running you see ahead something crawling out of the ground... ");
             Thread.Sleep(milliseconds);
-            Console.Write("As you get closeer. You see a Ghoul!");
+            Console.Write("As you get closer. You see a Ghoul!");
             Console.ReadKey();
             Combat(false, "Ghoul", 5, 5);
         }
