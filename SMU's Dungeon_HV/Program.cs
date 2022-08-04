@@ -42,7 +42,7 @@ namespace Smu_s_Dungeon
   ███    ███ ███    ███ ███   ███   ███    ███   ███    █▄  ███    ███ ███   ███
   ███   ▄███ ███    ███ ███   ███   ███    ███   ███    ███ ███    ███ ███   ███
   ████████▀  ████████▀   ▀█   █▀    ████████▀    ██████████  ▀██████▀   ▀█   █▀ ");
-            Music.sweetChild();
+           // Music.sweetChild();
             Console.ReadLine();// this is the start of the game which wil display the game title and play a tune...still working on being able to skip tune 
             if (!Directory.Exists("saves"))
             {
@@ -64,7 +64,7 @@ namespace Smu_s_Dungeon
         {
             Console.Clear();
             Player p = new Player();
-            int milliseconds = 1000;
+            int milliseconds = 1000;// this will cause a delay
 
             Console.Clear();
             Console.WriteLine("Welcome! Please enter your champion's name!");
@@ -216,3 +216,7 @@ namespace Smu_s_Dungeon
         }
     }
 }
+
+/*Still a work in progress. I am working on learning C++/trying to learn more about Unreal Engine so I havent 
+added anything new in a little while now. This whole project works but I still have not been able to correctly 
+get it to save/ load players.*/
